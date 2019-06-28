@@ -41,6 +41,12 @@ resource "google_compute_instance" "build" {
   provisioner "file" {
     source      = "jenkins"
     destination = "~"
+    connection {
+      type = "ssh"
+      user = "${local.user}"
+      private_key = "${file(var.private_key)}"
+    }
+          
   }
 
 }
